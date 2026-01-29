@@ -3,126 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookWorld - Local Bookstore</title>
-    <!-- Link to Google Fonts for clean typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+    <title>BookWorld - Your Online Bookstore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background-image: url('images/hero-bg.jpg'); background-size: cover; background-position: center; }
+        .sticky-nav { transition: all 0.3s ease; }
+        .sticky-nav.scrolled { background-color: rgba(26, 32, 44, 0.9); backdrop-filter: blur(10px); }
+    </style>
 </head>
-<body>
-    <!-- Header with bookstore name and navigation -->
-    <header>
-        <div class="container">
-            <h1 class="logo">BookWorld</h1>
-            <nav>
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#featured">Featured</a></li>
-                    <li><a href="#categories">Categories</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="sticky-nav fixed top-0 w-full z-50 bg-gray-900 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-400">BookWorld</h1>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#home" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="#featured" class="hover:text-blue-400 transition">Featured</a></li>
+                <li><a href="#categories" class="hover:text-blue-400 transition">Categories</a></li>
+                <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
+                <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
+            </ul>
+            <button class="md:hidden" onclick="toggleMenu()">☰</button>
         </div>
-    </header>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-blue-400">Home</a>
+            <a href="#featured" class="block py-2 hover:text-blue-400">Featured</a>
+            <a href="#categories" class="block py-2 hover:text-blue-400">Categories</a>
+            <a href="#about" class="block py-2 hover:text-blue-400">About</a>
+            <a href="#contact" class="block py-2 hover:text-blue-400">Contact</a>
+        </div>
+    </nav>
 
-    <!-- Hero section with tagline and call to action -->
-    <section id="hero">
-        <div class="container">
-            <h2>Discover Your Next Great Read</h2>
-            <p>Explore a world of stories, knowledge, and inspiration at BookWorld.</p>
-            <a href="#featured" class="cta-button">Shop Now</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-center">
+        <div class="bg-black bg-opacity-50 p-8 rounded-lg max-w-lg">
+            <h2 class="text-4xl font-bold mb-4">Discover Your Next Great Read</h2>
+            <p class="text-lg mb-6">Explore thousands of books at BookWorld – where stories come alive.</p>
+            <a href="#featured" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg transition">Shop Now</a>
         </div>
     </section>
 
-    <!-- Featured books section with card layout -->
-    <section id="featured">
-        <div class="container">
-            <h2>Featured Books</h2>
-            <div class="books-grid">
-                <div class="book-card">
-                    <img src="https://picsum.photos/200/300?random=1" alt="Book 1">
-                    <h3>The Great Gatsby</h3>
-                    <p>By F. Scott Fitzgerald</p>
-                    <span class="price">$15.99</span>
+    <!-- Featured Books Section -->
+    <section id="featured" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Featured Books</h2>
+            <div class="relative overflow-hidden">
+                <div id="carousel" class="flex transition-transform duration-500">
+                    <!-- Book 1 -->
+                    <div class="flex-shrink-0 w-full md:w-1/4 p-4">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center hover:scale-105 transition">
+                            <img src="images/book1.jpg" alt="Book 1" class="w-full h-48 object-cover rounded mb-4 cursor-pointer" onclick="openLightbox('images/book1.jpg')">
+                            <h3 class="text-xl font-semibold">The Great Gatsby</h3>
+                            <p class="text-gray-400">F. Scott Fitzgerald</p>
+                            <p class="text-blue-400 font-bold">$12.99</p>
+                            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded mt-2 transition">Shop Now</button>
+                        </div>
+                    </div>
+                    <!-- Book 2 -->
+                    <div class="flex-shrink-0 w-full md:w-1/4 p-4">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center hover:scale-105 transition">
+                            <img src="images/book2.jpg" alt="Book 2" class="w-full h-48 object-cover rounded mb-4 cursor-pointer" onclick="openLightbox('images/book2.jpg')">
+                            <h3 class="text-xl font-semibold">1984</h3>
+                            <p class="text-gray-400">George Orwell</p>
+                            <p class="text-blue-400 font-bold">$14.99</p>
+                            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded mt-2 transition">Shop Now</button>
+                        </div>
+                    </div>
+                    <!-- Book 3 -->
+                    <div class="flex-shrink-0 w-full md:w-1/4 p-4">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center hover:scale-105 transition">
+                            <img src="images/book3.jpg" alt="Book 3" class="w-full h-48 object-cover rounded mb-4 cursor-pointer" onclick="openLightbox('images/book3.jpg')">
+                            <h3 class="text-xl font-semibold">To Kill a Mockingbird</h3>
+                            <p class="text-gray-400">Harper Lee</p>
+                            <p class="text-blue-400 font-bold">$13.99</p>
+                            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded mt-2 transition">Shop Now</button>
+                        </div>
+                    </div>
+                    <!-- Book 4 -->
+                    <div class="flex-shrink-0 w-full md:w-1/4 p-4">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center hover:scale-105 transition">
+                            <img src="images/book4.jpg" alt="Book 4" class="w-full h-48 object-cover rounded mb-4 cursor-pointer" onclick="openLightbox('images/book4.jpg')">
+                            <h3 class="text-xl font-semibold">Pride and Prejudice</h3>
+                            <p class="text-gray-400">Jane Austen</p>
+                            <p class="text-blue-400 font-bold">$11.99</p>
+                            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded mt-2 transition">Shop Now</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="book-card">
-                    <img src="https://picsum.photos/200/300?random=2" alt="Book 2">
-                    <h3>To Kill a Mockingbird</h3>
-                    <p>By Harper Lee</p>
-                    <span class="price">$12.99</span>
+                <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 hover:bg-blue-600 p-2 rounded-full">‹</button>
+                <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 hover:bg-blue-600 p-2 rounded-full">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Book Categories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition">
+                    <h3 class="text-xl font-semibold">Fiction</h3>
                 </div>
-                <div class="book-card">
-                    <img src="https://picsum.photos/200/300?random=3" alt="Book 3">
-                    <h3>1984</h3>
-                    <p>By George Orwell</p>
-                    <span class="price">$14.99</span>
+                <div class="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition">
+                    <h3 class="text-xl font-semibold">Non-Fiction</h3>
                 </div>
-                <div class="book-card">
-                    <img src="https://picsum.photos/200/300?random=4" alt="Book 4">
-                    <h3>Pride and Prejudice</h3>
-                    <p>By Jane Austen</p>
-                    <span class="price">$13.99</span>
+                <div class="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition">
+                    <h3 class="text-xl font-semibold">Mystery</h3>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition">
+                    <h3 class="text-xl font-semibold">Sci-Fi</h3>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg text-center hover:bg-gray-700 transition">
+                    <h3 class="text-xl font-semibold">Romance</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories section -->
-    <section id="categories">
-        <div class="container">
-            <h2>Shop by Category</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <img src="https://picsum.photos/150/150?random=5" alt="School Books">
-                    <h3>School Books</h3>
-                    <p>Essential textbooks for all grades.</p>
-                </div>
-                <div class="category-card">
-                    <img src="https://picsum.photos/150/150?random=6" alt="Novels">
-                    <h3>Novels</h3>
-                    <p>Fiction and classics to captivate you.</p>
-                </div>
-                <div class="category-card">
-                    <img src="https://picsum.photos/150/150?random=7" alt="Competitive Exams">
-                    <h3>Competitive Exams</h3>
-                    <p>Prep materials for exams and tests.</p>
-                </div>
-                <div class="category-card">
-                    <img src="https://picsum.photos/150/150?random=8" alt="Stationery">
-                    <h3>Stationery</h3>
-                    <p>Pens, notebooks, and more.</p>
-                </div>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <img src="images/about.jpg" alt="About BookWorld" class="w-full md:w-1/2 h-64 object-cover rounded-lg mb-6 md:mb-0 md:mr-8">
+            <div>
+                <h2 class="text-3xl font-bold mb-4">About BookWorld</h2>
+                <p class="text-lg">BookWorld is your go-to online bookstore, offering a vast collection of books from classic literature to modern bestsellers. We're passionate about connecting readers with stories that inspire and entertain.</p>
             </div>
         </div>
     </section>
 
-    <!-- About section -->
-    <section id="about">
-        <div class="container">
-            <h2>About BookWorld</h2>
-            <p>BookWorld is your local haven for books and stationery. We've been serving the community for over 20 years, offering a curated selection of books, from bestsellers to rare finds. Our passion is connecting readers with stories that inspire and educate.</p>
-        </div>
-    </section>
-
-    <!-- Contact section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p><strong>Address:</strong> 123 Book Street, Cityville, State 12345</p>
-                <p><strong>Phone:</strong> (123) 456-7890</p>
-                <p><strong>Opening Hours:</strong> Mon-Fri: 9 AM - 7 PM, Sat-Sun: 10 AM - 5 PM</p>
-            </div>
-            <a href="https://wa.me/1234567890?text=Hi%20BookWorld,%20I'd%20like%20to%20place%20an%20order!" class="whatsapp-button" target="_blank">Order Now via WhatsApp</a>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4 max-w-lg">
+            <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
+            <form id="contactForm" class="bg-gray-800 p-6 rounded-lg">
+                <div class="mb-4">
+                    <label class="block mb-2">Name</label>
+                    <input type="text" id="name" class="w-full p-2 rounded bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Email</label>
+                    <input type="email" id="email" class="w-full p-2 rounded bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Message</label>
+                    <textarea id="message" class="w-full p-2 rounded bg-gray-700 text-white" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded w-full transition">Submit</button>
+            </form>
+            <p id="successMessage" class="text-green-400 mt-4 hidden">Thank you! We'll get back to you soon.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 BookWorld. All rights reserved. | Designed for local readers.</p>
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-4 mb-4">
+                <a href="#"><img src="images/facebook.png" alt="Facebook" class="w-8 h-8"></a>
+                <a href="#"><img src="images/twitter.png" alt="Twitter" class="w-8 h-8"></a>
+                <a href="#"><img src="images/instagram.png" alt="Instagram" class="w-8 h-8"></a>
+            </div>
+            <div class="mb-4">
+                <a href="#" class="hover:text-blue-400 mr-4">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-400">Terms of Service</a>
+            </div>
+            <p>&copy; 2023 BookWorld. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+        <img id="lightboxImg" src="" alt="Lightbox" class="max-w-full max-h-full">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
